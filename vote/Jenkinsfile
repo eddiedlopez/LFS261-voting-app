@@ -3,7 +3,7 @@ pipeline {
   agent none
 
   stages {
-    stage('build') {
+    stage('vote-build') {
       agent {
         docker {
           image 'python:2.7.16-slim'
@@ -21,8 +21,7 @@ pipeline {
         }
       }
     }
-    stage('test') {
-
+    stage('vote-test') {
       agent {
         docker {
           image 'python:2.7.16-slim'
@@ -41,7 +40,7 @@ pipeline {
         }
       }
     }
-    stage('vote integration') {
+    stage('vote-integration') {
       agent any
       when {
         changeset "**/vote/**"
@@ -54,7 +53,7 @@ pipeline {
         }
       }
     }
-    stage('docker-package') {
+    stage('vote-docker-package') {
       agent any
       steps {
         echo 'Packaging wvoteorker app with docker'

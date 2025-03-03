@@ -10,9 +10,9 @@ pipeline {
           image 'maven:3.9.8-sapmachine-21'
           args '-v $HOME/.m2:/root/.m2'
         }
-
       }
-      when {
+      
+    when {
         changeset '**/worker/**'
       }
       steps {
@@ -20,7 +20,6 @@ pipeline {
         dir(path: 'worker') {
           sh 'mvn compile'
         }
-
       }
     }
 
@@ -30,11 +29,12 @@ pipeline {
           image 'maven:3.9.8-sapmachine-21'
           args '-v $HOME/.m2:/root/.m2'
         }
-
       }
+      
       when {
         changeset '**/worker/**'
       }
+      
       steps {
         echo 'Running Unit Tets on worker app.'
         dir(path: 'worker') {

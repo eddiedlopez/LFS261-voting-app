@@ -10,7 +10,7 @@ services:
     image: eddiedlopez/vote:latest
     build: ./vote
     ports:
-      - 5000:80
+      - 5002:80
     depends_on:
       - redis
     networks:
@@ -39,7 +39,11 @@ services:
     image: eddiedlopez/result:latest
     build: ./result
     ports:
+<<<<<<< HEAD
       - 5001:80
+=======
+      - 5003:80
+>>>>>>> af2fbe148bd615a6094b0409121c2995a67db268
     depends_on:
       - db
     networks:

@@ -62,7 +62,7 @@ pipeline {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
             // ./vote is the path to the Dockerfile that Jenkins will find from the Github repo
             //def voteImage = docker.build("eddiedlopez/vote-noarch:v${env.BUILD_ID}", "./vote")
-            sh "docker context create multiarch && docker buiildx create noarch --use multiarch"
+            sh "docker context ls && docker context create multiarch && docker buiildx create --name noarch --use multiarch"
 	    sh """
 	    docker buildx build --platform linux/amd64,linux/arm64 -t eddiedlopez/vote-noarch:latest --push .
 	    """ 
